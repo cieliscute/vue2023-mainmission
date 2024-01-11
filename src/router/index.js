@@ -7,7 +7,7 @@ const router = createRouter({
   routes: [
     {
       path: '/login',
-      name: 'home',
+      name: 'login',
       component: LoginPage
     },
     {
@@ -21,6 +21,12 @@ const router = createRouter({
     {
       path: '/managepage',
       component: () => import('../views/ManagePage.vue')
+    },
+    {
+      path: '/',
+      redirect: {
+        name: 'login'
+      }
     }
     // {
     //   path:'/login',
