@@ -32,7 +32,7 @@
   </div>
 </template>
 <script>
-// import RainyDay from '../plugin/rainyday';
+import Swal from 'sweetalert2';
 export default {
   data() {
     return {
@@ -58,26 +58,8 @@ export default {
           console.log(error);
         })
     },
-    // rainyEffect() {
-    //   // var image = document.getElementById('background');
-    //   var image = this.$refs.background;
-    //   image.onload = function () {
-    //     var engine = new RainyDay({
-    //       image: this,
-    //       gravityAngle: Math.PI / 9
-    //     });
-    //     engine.trail = engine.TRAIL_SMUDGE;
-    //     engine.rain([
-    //       [1, 0, 1000],
-    //       [3, 3, 1]
-    //     ], 0);
-    //   };
-    //   image.crossOrigin = 'anonymous';
-    //   image.src = 'http://i.imgur.com/VuX2Nf0.jpg';
-    // }
   },
   mounted() {
-    // this.rainyEffect2();
   },
 }
 </script>
