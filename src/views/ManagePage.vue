@@ -1,6 +1,8 @@
 <template>
-  <div class="loading vw-100 vh-100 d-flex justify-content-center align-items-center" v-if="loading">
-    <!-- loader的css在src/assets/cssloader.css內，參考網站為https://css-loaders.com/nature/ -->
+  <div
+    class="loading vw-100 vh-100 d-flex justify-content-center align-items-center"
+    v-if="loading"
+  >
     <div class="loader"></div>
   </div>
   <div class="container" v-else>
@@ -12,18 +14,10 @@
             <thead>
               <tr>
                 <th width="150">產品名稱</th>
-                <th width="120">
-                  原價
-                </th>
-                <th width="120">
-                  售價
-                </th>
-                <th width="150">
-                  是否啟用
-                </th>
-                <th width="120">
-                  查看細節
-                </th>
+                <th width="120">原價</th>
+                <th width="120">售價</th>
+                <th width="150">是否啟用</th>
+                <th width="120">查看細節</th>
               </tr>
             </thead>
             <tbody>
@@ -40,19 +34,23 @@
                   <span v-else-if="!product.is_enabled">未啟用</span>
                 </td>
                 <td width="120">
-                  <button type="button" class="btn btn-primary" @click="temp = product">查看細節</button>
+                  <button type="button" class="btn btn-primary" @click="temp = product">
+                    查看細節
+                  </button>
                 </td>
               </tr>
             </tbody>
           </table>
-          <p>目前有<span>{{ products.length }}</span> 項產品</p>
+          <p>
+            目前有<span>{{ products.length }}</span> 項產品
+          </p>
         </div>
       </div>
       <div class="col-md-6" v-if="!loading">
         <h2>單一產品細節</h2>
         <template v-if="temp">
           <div class="card mb-3">
-            <img :src="temp.imageUrl" class="card-img-top primary-image" alt="主圖">
+            <img :src="temp.imageUrl" class="card-img-top primary-image" alt="主圖" />
             <div class="card-body">
               <h5 class="card-title">
                 {{ temp.title }}
@@ -62,13 +60,15 @@
               <p class="card-text">商品內容：{{ temp.content }}</p>
               <div class="d-flex">
                 <p class="card-text me-2">{{ temp.price }}</p>
-                <p class="card-text text-secondary"><del>{{ temp.origin_price }}</del></p>
+                <p class="card-text text-secondary">
+                  <del>{{ temp.origin_price }}</del>
+                </p>
                 元 / {{ temp.unit }}
               </div>
             </div>
           </div>
-          <template v-for="(item, id) in temp.imagesUrl" :key="item+id">
-            <img :src="item" alt="" class="img-fluid mb-2">
+          <template v-for="(item, id) in temp.imagesUrl" :key="item + id">
+            <img :src="item" alt="" class="img-fluid mb-2" />
           </template>
         </template>
         <p class="text-secondary">請選擇一個商品查看</p>
@@ -77,101 +77,72 @@
   </div>
 </template>
 <script>
-const products = [
-  {
-    category: "甜甜圈",
-    content: "尺寸：14x14cm",
-    description:
-      "濃郁的草莓風味，中心填入滑順不膩口的卡士達內餡，帶來滿滿幸福感！",
-    id: "-L9tH8jxVb2Ka_DYPwng",
-    is_enabled: 1,
-    origin_price: 150,
-    price: 99,
-    title: "草莓莓果夾心圈",
-    unit: "個",
-    num: 10,
-    imageUrl:
-      "https://images.unsplash.com/photo-1583182332473-b31ba08929c8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NzR8fGRvbnV0fGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60",
-    imagesUrl: [
-      "https://images.unsplash.com/photo-1626094309830-abbb0c99da4a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2832&q=80",
-      "https://images.unsplash.com/photo-1559656914-a30970c1affd?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTY0fHxkb251dHxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
-    ]
-  },
-  {
-    category: "蛋糕",
-    content: "尺寸：6寸",
-    description:
-      "蜜蜂蜜蛋糕，夾層夾上酸酸甜甜的檸檬餡，清爽可口的滋味讓人口水直流！",
-    id: "-McJ-VvcwfN1_Ye_NtVA",
-    is_enabled: 16,
-    origin_price: 1000,
-    price: 900,
-    title: "蜂蜜檸檬蛋糕",
-    unit: "個",
-    num: 1,
-    imageUrl:
-      "https://images.unsplash.com/photo-1627834377411-8da5f4f09de8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1001&q=80",
-    imagesUrl: [
-      "https://images.unsplash.com/photo-1618888007540-2bdead974bbb?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=987&q=80"
-    ]
-  },
-  {
-    category: "蛋糕",
-    content: "尺寸：6寸",
-    description: "法式煎薄餅加上濃郁可可醬，呈現經典的美味及口感。",
-    id: "-McJ-VyqaFlLzUMmpPpm",
-    is_enabled: 1,
-    origin_price: 700,
-    price: 600,
-    title: "暗黑千層",
-    unit: "個",
-    num: 15,
-    imageUrl:
-      "https://images.unsplash.com/photo-1505253149613-112d21d9f6a9?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fGNha2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60",
-    imagesUrl: [
-      "https://images.unsplash.com/flagged/photo-1557234985-425e10c9d7f1?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTA5fHxjYWtlfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60",
-      "https://images.unsplash.com/photo-1540337706094-da10342c93d8?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fGNha2V8ZW58MHx8MHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
-    ]
-  }
-];
+import Swal from 'sweetalert2';
+
 export default {
   data() {
     return {
-      products,
-      temp: "",
+      products:'',
+      temp: '',
       loading: true
-    };
+    }
   },
   methods: {
     checktoken() {
+      // 取出cookie中的token
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
-      const path = `${import.meta.env.VITE_APIURL}/api/user/check`;
-      this.$http.post(path, null, {
-        headers: {
-          Authorization: token,
-        },
-      })
-      .then((response) => {
-        console.log(response)
-        if (response.data.success !== true) {
-          // token無效跳轉回登入頁面
-          this.$router.push('/');
-        }
-      })
-      .then(()=>{
-        this.loading=false;
-      })
-      .catch(err => {
-        console.log(err);
-      })
+      // 沒有經過login頁面正確登入順序，cookie中不會存在token
+      if(!token){
+        Swal.fire({
+          title: '登入後才可以訪問後台唷！',
+          icon: 'error',
+          confirmButtonText: 'OK'
+        }).then(()=>{
+          this.$router.push('/login')
+        })
+      }
+      const checkTokenPath = `${import.meta.env.VITE_APIURL}/api/user/check`
+      const getDataPath=`${import.meta.env.VITE_APIURL}/api/${import.meta.env.VITE_API_ADMIN}/admin/products/all`
+      this.$http.post(checkTokenPath, null, {
+          headers: {
+            Authorization: token
+          }
+        })
+        // 跑這個.then代表token驗證成功
+        .then(response=>{
+          // 繼續取得資料
+          return this.$http.get(getDataPath,{
+            headers:{ Authorization: token }
+          })
+        })
+        // 跑.then代表資料正確取得
+        .then(response => {
+          this.products=response.data.products;
+          // 取消loading動畫
+          this.loading = false;
+        })
+        // 有任何錯誤直接跳到.catch
+        .catch((err) => {
+          console.log('err:',err.response.data.message);
+          Swal.fire({
+            title: '請正確登入再訪問後台頁面',
+            text: '點選下方按鈕回到登入頁面',
+            icon: 'error',
+            allowOutsideClick: false,
+            confirmButtonText: 'OK'
+          })
+          .then(()=>{
+            // 點選sweetalert的按鈕之後，跳轉回登入頁面
+            this.$router.push('/login')
+          })
+        })
     }
   },
-  created() {
-  },
-  mounted(){
-    this.checktoken();
+  created() {},
+  mounted() {
+    this.checktoken()
   }
-};
+}
 </script>
 <style scoped>
 * {
