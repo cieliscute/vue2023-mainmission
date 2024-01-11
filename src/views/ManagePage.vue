@@ -91,7 +91,16 @@ export default {
     checktoken() {
       // 取出cookie中的token
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
-
+      // 沒有經過login頁面正確登入順序，cookie中不會存在token
+      // if(!token){
+      //   Swal.fire({
+      //     title: '登入後才可以訪問後台唷！',
+      //     icon: 'error',
+      //     confirmButtonText: 'OK'
+      //   }).then(()=>{
+      //     this.$router.push('/login')
+      //   })
+      // }
       const checkTokenPath = `${import.meta.env.VITE_APIURL}/api/user/check`
       const getDataPath=`${import.meta.env.VITE_APIURL}/api/${import.meta.env.VITE_API_ADMIN}/admin/products/all`
       this.$http.post(checkTokenPath, null, {

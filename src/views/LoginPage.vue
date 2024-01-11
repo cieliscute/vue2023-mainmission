@@ -16,7 +16,7 @@
       <div class="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-xxl-4">
         <div class="login-box bg-black rounded p-4" style="--bs-bg-opacity: 0.6">
           <h2 class="text-info text-center mt-3">Login</h2>
-          <form @submit="onSubmit">
+          <form @submit="onSubmit" @keyup.enter="onSubmit">
             <div class="form-floating mb-3">
               <input
                 type="email"
