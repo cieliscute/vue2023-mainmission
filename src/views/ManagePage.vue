@@ -31,7 +31,7 @@
                 </td>
                 <td width="150">
                   <span class="text-success" v-if="product.is_enabled">啟用</span>
-                  <span v-else-if="!product.is_enabled">未啟用</span>
+                  <span v-else>未啟用</span>
                 </td>
                 <td width="120">
                   <button type="button" class="btn btn-primary" @click="temp = product">
@@ -46,7 +46,7 @@
           </p>
         </div>
       </div>
-      <div class="col-md-6" v-if="!loading">
+      <div class="col-md-6">
         <h2>單一產品細節</h2>
         <template v-if="temp">
           <div class="card mb-3">
@@ -87,20 +87,13 @@ export default {
       loading: true
     }
   },
+  computed:{
+  },
   methods: {
     checktoken() {
       // 取出cookie中的token
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
-      // 沒有經過login頁面正確登入順序，cookie中不會存在token
-      // if(!token){
-      //   Swal.fire({
-      //     title: '登入後才可以訪問後台唷！',
-      //     icon: 'error',
-      //     confirmButtonText: 'OK'
-      //   }).then(()=>{
-      //     this.$router.push('/login')
-      //   })
-      // }
+
       const checkTokenPath = `${import.meta.env.VITE_APIURL}/api/user/check`
       const getDataPath=`${import.meta.env.VITE_APIURL}/api/${import.meta.env.VITE_API_ADMIN}/admin/products/all`
       this.$http.post(checkTokenPath, null, {
@@ -117,7 +110,7 @@ export default {
         })
         // 跑.then代表資料正確取得
         .then(response => {
-          this.products=response.data.products;
+          this.products=Object.values(response.data.products);
           // 取消loading動畫
           this.loading = false;
         })
@@ -145,7 +138,4 @@ export default {
 }
 </script>
 <style scoped>
-* {
-  /* outline: 1px solid red; */
-}
 </style>

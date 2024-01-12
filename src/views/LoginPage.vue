@@ -1,17 +1,20 @@
 <template>
-  <img
-    src="https://images.unsplash.com/photo-1585978075589-fc6561e20296?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-    alt=""
-    class="vh-100 w-100 object-fit-cover position-fixed top-0 left-0 z-n1"
-    id="background"
-    ref="background"
-  />
+  <!-- 在滿版圖片上方多包一層，因為blur在某些瀏覽器會有一些白邊，透過scale配合overflow-hidden來解決-->
+  <div class="overflow-hidden vh-100 top-0 left-0 z-n1 position-fixed">
+    <img
+      src="https://images.unsplash.com/photo-1585978075589-fc6561e20296?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      alt=""
+      class="h-100 w-100 object-fit-cover"
+      id="background"
+      ref="background"
+    />
+  </div>
   <loading
     v-model:active="isLoading"
     :can-cancel="false"
     :is-full-page="true"
   />
-  <div class="container h-100">
+  <div class="container">
     <div class="vh-100 row justify-content-center align-items-center">
       <div class="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-xxl-4">
         <div class="login-box bg-black rounded p-4" style="--bs-bg-opacity: 0.6">
@@ -96,9 +99,10 @@ export default {
             confirmButtonText: 'OK'
           })
         })
-    }
+    },
   },
-  mounted() {}
+  mounted() {
+  },
 }
 </script>
 <style scoped lang="scss">
@@ -128,7 +132,7 @@ input:-webkit-autofill:focus {
 
 img {
   filter: blur(4px);
-  transform: scale(1.01);
+  transform: scale(1.03);
 }
 
 .login-box form a {
