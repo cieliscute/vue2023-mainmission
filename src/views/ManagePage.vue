@@ -131,7 +131,6 @@ export default {
         })
     }
   },
-  created() {},
   mounted() {
     this.checktoken()
   }
