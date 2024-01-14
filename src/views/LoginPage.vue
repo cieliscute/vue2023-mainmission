@@ -1,12 +1,12 @@
 <template>
   <!-- 在滿版圖片上方多包一層，因為blur在某些瀏覽器會有一些白邊，透過scale配合overflow-hidden來解決-->
-  <div class="overflow-hidden h-lvh -z-10  fixed inset-0">
+  <div class="overflow-hidden h-dvh -z-10  fixed inset-0">
     <img
       src="https://images.unsplash.com/photo-1585978075589-fc6561e20296?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       alt="" class="h-full w-full object-cover blur-sm scale-125" id="background" ref="background" />
   </div>
   <loading v-model:active="isLoading" :can-cancel="false" :is-full-page="true" />
-  <div class="max-w-md mx-auto h-lvh flex items-center">
+  <div class="max-w-md mx-auto h-dvh flex items-center px-2">
     <form class="basis-full bg-slate-800/30 py-6 px-4 rounded-md" @keyup.enter="onSubmit" @submit="onSubmit">
       <h1 class="text-center text-white text-4xl mb-10">Login</h1>
       <div class="relative mb-6">

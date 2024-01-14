@@ -1,4 +1,5 @@
 import './assets/tailwindstyle.css'
+import './assets/cssloader.css'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'

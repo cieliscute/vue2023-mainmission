@@ -1,6 +1,6 @@
 <template>
   <div
-    class="loading vw-100 vh-100 d-flex justify-content-center align-items-center"
+    class="loading w-screen h-dvh flex justify-center items-center"
     v-if="loading"
   >
     <div class="loader"></div>
