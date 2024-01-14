@@ -1,6 +1,4 @@
-// import './assets/main.css'
-import './assets/all.scss'
-import 'bootstrap/dist/js/bootstrap'
+import './assets/tailwindstyle.css'
 
 import axios from 'axios'
 import VueAxios from 'vue-axios'
