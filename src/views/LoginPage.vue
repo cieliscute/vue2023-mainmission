@@ -1,6 +1,6 @@
 <template>
   <!-- 在滿版圖片上方多包一層，因為blur在某些瀏覽器會有一些白邊，透過scale配合overflow-hidden來解決-->
-  <div class="overflow-hidden vh-100 top-0 left-0 z-n1 position-fixed">
+  <div class="overflow-hidden vh-100 top-0 start-0 end-0 bottom-0 z-n1 position-fixed">
     <img
       src="https://images.unsplash.com/photo-1585978075589-fc6561e20296?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       alt=""
