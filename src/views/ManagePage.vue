@@ -82,59 +82,58 @@ import Swal from 'sweetalert2';
 export default {
   data() {
     return {
-      products:'',
+      products: '',
       temp: '',
-      loading: true
-    }
+      loading: true,
+    };
   },
-  computed:{
+  computed: {
   },
   methods: {
     checktoken() {
       // 取出cookie中的token
       const token = document.cookie.replace(/(?:(?:^|.*;\s*)hexToken\s*=\s*([^;]*).*$)|^.*$/, '$1');
 
-      const checkTokenPath = `${import.meta.env.VITE_APIURL}/api/user/check`
-      const getDataPath=`${import.meta.env.VITE_APIURL}/api/${import.meta.env.VITE_API_ADMIN}/admin/products/all`
+      const checkTokenPath = `${import.meta.env.VITE_APIURL}/api/user/check`;
+      const getDataPath = `${import.meta.env.VITE_APIURL}/api/${import.meta.env.VITE_API_ADMIN}/admin/products/all`;
       this.$http.post(checkTokenPath, null, {
-          headers: {
-            Authorization: token
-          }
-        })
+        headers: {
+          Authorization: token,
+        },
+      })
         // 跑這個.then代表token驗證成功
-        .then(response=>{
+        .then((response) =>
           // 繼續取得資料
-          return this.$http.get(getDataPath,{
-            headers:{ Authorization: token }
-          })
-        })
+          this.$http.get(getDataPath, {
+            headers: { Authorization: token },
+          }))
         // 跑.then代表資料正確取得
-        .then(response => {
-          this.products=Object.values(response.data.products);
+        .then((response) => {
+          this.products = Object.values(response.data.products);
           // 取消loading動畫
           this.loading = false;
         })
         // 有任何錯誤直接跳到.catch
         .catch((err) => {
-          console.log('err:',err.response.data.message);
+          console.log('err:', err.response.data.message);
           Swal.fire({
             title: '請正確登入再訪問後台頁面',
             text: '點選下方按鈕回到登入頁面',
             icon: 'error',
             allowOutsideClick: false,
-            confirmButtonText: 'OK'
+            confirmButtonText: 'OK',
           })
-          .then(()=>{
+            .then(() => {
             // 點選sweetalert的按鈕之後，跳轉回登入頁面
-            this.$router.push('/login')
-          })
-        })
-    }
+              this.$router.push('/login');
+            });
+        });
+    },
   },
   mounted() {
-    this.checktoken()
-  }
-}
+    this.checktoken();
+  },
+};
 </script>
 <style scoped>
 </style>
