@@ -101,12 +101,9 @@ export default {
           Authorization: token,
         },
       })
-        // 跑這個.then代表token驗證成功
-        .then((response) =>
-          // 繼續取得資料
-          this.$http.get(getDataPath, {
-            headers: { Authorization: token },
-          }))
+        .then(() => this.$http.get(getDataPath, {
+          headers: { Authorization: token },
+        }))
         // 跑.then代表資料正確取得
         .then((response) => {
           this.products = Object.values(response.data.products);
