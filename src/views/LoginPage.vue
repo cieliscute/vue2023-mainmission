@@ -54,56 +54,57 @@
   </div>
 </template>
 <script>
-import Loading from 'vue-loading-overlay'
-import Swal from 'sweetalert2'
-import 'vue-loading-overlay/dist/css/index.css'
+import Loading from 'vue-loading-overlay';
+import Swal from 'sweetalert2';
+import 'vue-loading-overlay/dist/css/index.css';
+
 export default {
   data() {
     return {
       isLoading: false,
       user: {
         username: '',
-        password: ''
-      }
-    }
+        password: '',
+      },
+    };
   },
   components: {
-    Loading
+    Loading,
   },
   methods: {
     onSubmit() {
       // 將loading動畫顯示，告知使用者正在驗證帳號密碼
-      this.isLoading=true;
-      const path = `${import.meta.env.VITE_APIURL}/admin/signin`
+      this.isLoading = true;
+      const path = `${import.meta.env.VITE_APIURL}/admin/signin`;
       this.$http
         .post(path, this.user)
         .then((response) => {
           // 取得資料代表驗證完成，移除loading動畫
-          this.isLoading=false
-          const token = response.data.token
-          const expired = response.data.expired
+          this.isLoading = false;
+          const { token } = response.data;
+          const { expired } = response.data;
           // 設定cookie
-          document.cookie = `hexToken=${token};expires=${new Date(expired)};`
+          document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
           // this.$http.defaults.headers.common.Authorization = `${token}`;
-          this.$router.push('/managepage')
+          this.$router.push('/managepage');
         })
         .catch((error) => {
           // console.log(error.response.data.message);
           // 驗證錯誤，移除loading動畫
-          this.isLoading=false
+          this.isLoading = false;
           // 彈出錯誤資訊回饋給使用者
           Swal.fire({
             title: `${error.response.data.message}`,
             text: '請確認資料皆有正確輸入',
             icon: 'error',
-            confirmButtonText: 'OK'
-          })
-        })
+            confirmButtonText: 'OK',
+          });
+        });
     },
   },
   mounted() {
   },
-}
+};
 </script>
 <style scoped lang="scss">
 // label在縮到左上方時需為透明（原本是白色）
