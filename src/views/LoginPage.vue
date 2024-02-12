@@ -110,7 +110,7 @@ export default {
     },
   },
   mounted() {
-    // this.pushMessage({ title: '更新購物車資訊', content: '測試' });
+    this.pushMessage({ title: '更新購物車資訊', content: '測試' });
     // this.fullScreenLoadingActive();
     // setTimeout(() => {
     //   this.fullScreenLoadingDeactive();
