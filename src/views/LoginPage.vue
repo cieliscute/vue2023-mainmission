@@ -2,7 +2,7 @@
   <FullScreenLoading></FullScreenLoading>
   <ToastContainer></ToastContainer>
   <!-- 在滿版圖片上方多包一層，因為blur在某些瀏覽器會有一些白邊，透過scale配合overflow-hidden來解決-->
-  <div class="overflow-hidden vh-100 top-0 start-0 end-0 bottom-0 z-n1 position-fixed">
+  <div class="overflow-hidden dvh-100 top-0 start-0 end-0 bottom-0 z-n1 position-fixed">
     <img
       src="https://images.unsplash.com/photo-1585978075589-fc6561e20296?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       alt=""
@@ -17,7 +17,7 @@
     :is-full-page="true"
   />
   <div class="container">
-    <div class="vh-100 row justify-content-center align-items-center">
+    <div class="dvh-100 row justify-content-center align-items-center">
       <div class="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-xxl-4">
         <div class="login-box bg-black rounded p-4" style="--bs-bg-opacity: 0.6">
           <h2 class="text-info text-center mt-3">Login</h2>
@@ -119,7 +119,7 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.dvh100{
+.dvh-100{
   height: 100dvh;
 }
 
