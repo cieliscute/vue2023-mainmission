@@ -1,4 +1,5 @@
 <template>
+  <FullScreenLoading></FullScreenLoading>
   <ToastContainer></ToastContainer>
   <!-- 在滿版圖片上方多包一層，因為blur在某些瀏覽器會有一些白邊，透過scale配合overflow-hidden來解決-->
   <div class="overflow-hidden vh-100 top-0 start-0 end-0 bottom-0 z-n1 position-fixed">
@@ -55,12 +56,12 @@
   </div>
 </template>
 <script>
-import Loading from 'vue-loading-overlay';
 import Swal from 'sweetalert2';
-import 'vue-loading-overlay/dist/css/index.css';
-import ToastContainer from '@/components/ToastContainer.vue';
+
 import { mapActions } from 'pinia';
 import statusStore from '@/stores/statusStore';
+import ToastContainer from '@/components/ToastContainer.vue';
+import FullScreenLoading from '@/components/FullScreenLoading.vue';
 
 export default {
   data() {
@@ -73,10 +74,11 @@ export default {
     };
   },
   components: {
-    Loading,
+    FullScreenLoading,
     ToastContainer,
   },
   methods: {
+    ...mapActions(statusStore, ['pushMessage', 'fullScreenLoadingActive', 'fullScreenLoadingDeactive']),
     onSubmit() {
       // 將loading動畫顯示，告知使用者正在驗證帳號密碼
       this.isLoading = true;
@@ -106,10 +108,13 @@ export default {
           });
         });
     },
-    ...mapActions(statusStore, ['pushMessage']),
   },
   mounted() {
-    this.pushMessage({ title: '更新購物車資訊', content: '測試' });
+    // this.pushMessage({ title: '更新購物車資訊', content: '測試' });
+    // this.fullScreenLoadingActive();
+    // setTimeout(() => {
+    //   this.fullScreenLoadingDeactive();
+    // }, 5000);
   },
 };
 </script>
