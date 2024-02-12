@@ -111,8 +111,7 @@ export default {
           this.loading = false;
         })
         // 有任何錯誤直接跳到.catch
-        .catch((err) => {
-          console.log('err:', err.response.data.message);
+        .catch(() => {
           Swal.fire({
             title: '請正確登入再訪問後台頁面',
             text: '點選下方按鈕回到登入頁面',

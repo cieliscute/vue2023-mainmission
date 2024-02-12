@@ -1,4 +1,5 @@
 <template>
+  <ToastContainer></ToastContainer>
   <!-- 在滿版圖片上方多包一層，因為blur在某些瀏覽器會有一些白邊，透過scale配合overflow-hidden來解決-->
   <div class="overflow-hidden vh-100 top-0 start-0 end-0 bottom-0 z-n1 position-fixed">
     <img
@@ -57,6 +58,9 @@
 import Loading from 'vue-loading-overlay';
 import Swal from 'sweetalert2';
 import 'vue-loading-overlay/dist/css/index.css';
+import ToastContainer from '@/components/ToastContainer.vue';
+import { mapActions } from 'pinia';
+import statusStore from '@/stores/statusStore';
 
 export default {
   data() {
@@ -70,6 +74,7 @@ export default {
   },
   components: {
     Loading,
+    ToastContainer,
   },
   methods: {
     onSubmit() {
@@ -101,12 +106,18 @@ export default {
           });
         });
     },
+    ...mapActions(statusStore, ['pushMessage']),
   },
   mounted() {
+    this.pushMessage({ title: '更新購物車資訊', content: '測試' });
   },
 };
 </script>
 <style scoped lang="scss">
+.dvh100{
+  height: 100dvh;
+}
+
 // label在縮到左上方時需為透明（原本是白色）
 .form-floating > .form-control:focus ~ label::after,
 .form-floating > .form-control:not(:placeholder-shown) ~ label::after,
