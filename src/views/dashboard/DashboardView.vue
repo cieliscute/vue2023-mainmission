@@ -24,6 +24,9 @@
   </div>
 </template>
 <script>
+import Swal from 'sweetalert2';
+import { takeoutToken } from '@/methods/myFunction';
+
 export default {
   data() {
     return {
@@ -32,7 +35,15 @@ export default {
   methods: {
   },
   mounted() {
-
+    const token = takeoutToken();
+    if (!token) {
+      Swal.fire({
+        title: '錯誤！',
+        text: '請先登入才可進入後台頁面',
+        icon: 'error',
+        confirmButtonText: 'OK',
+      });
+    }
   },
 };
 </script>

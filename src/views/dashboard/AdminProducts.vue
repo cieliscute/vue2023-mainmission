@@ -56,8 +56,8 @@ export default {
           this.products = response.data.products;
           this.pagination = response.data.pagination;
         })
-        .catch((err) => {
-          alert(err.response.data.message);
+        .catch(() => {
+          // alert(err.response.data.message);
         });
     },
   },

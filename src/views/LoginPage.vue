@@ -11,11 +11,6 @@
       ref="background"
     />
   </div>
-  <loading
-    v-model:active="isLoading"
-    :can-cancel="false"
-    :is-full-page="true"
-  />
   <div class="container">
     <div class="dvh-100 row justify-content-center align-items-center">
       <div class="col-10 col-sm-8 col-md-7 col-lg-6 col-xl-5 col-xxl-4">
@@ -63,6 +58,8 @@ import statusStore from '@/stores/statusStore';
 import ToastContainer from '@/components/ToastContainer.vue';
 import FullScreenLoading from '@/components/FullScreenLoading.vue';
 
+import { setCookie } from '../methods/myFunction';
+
 export default {
   data() {
     return {
@@ -80,25 +77,25 @@ export default {
   methods: {
     ...mapActions(statusStore, ['pushMessage', 'fullScreenLoadingActive', 'fullScreenLoadingDeactive']),
     onSubmit() {
-      // 將loading動畫顯示，告知使用者正在驗證帳號密碼
-      this.isLoading = true;
+      this.fullScreenLoadingActive();
       const path = `${import.meta.env.VITE_APIURL}/admin/signin`;
       this.$http
         .post(path, this.user)
         .then((response) => {
           // 取得資料代表驗證完成，移除loading動畫
-          this.isLoading = false;
-          const { token } = response.data;
-          const { expired } = response.data;
-          // 設定cookie
-          document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
+          // this.isLoading = false;
+          this.fullScreenLoadingDeactive();
+          const { token, expired } = response.data;
+          setCookie(token, expired);
+          // document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
           // this.$http.defaults.headers.common.Authorization = `${token}`;
-          this.$router.push('/managepage');
+          this.$router.push('/dashboard/products');
         })
         .catch((error) => {
           // console.log(error.response.data.message);
           // 驗證錯誤，移除loading動畫
-          this.isLoading = false;
+          // this.isLoading = false;
+          this.fullScreenLoadingDeactive();
           // 彈出錯誤資訊回饋給使用者
           Swal.fire({
             title: `${error.response.data.message}`,
@@ -110,11 +107,12 @@ export default {
     },
   },
   mounted() {
-    this.pushMessage({ title: '更新購物車資訊', content: '測試' });
+    // this.pushMessage({ title: '更新購物車資訊', content: '測試' });
     // this.fullScreenLoadingActive();
     // setTimeout(() => {
     //   this.fullScreenLoadingDeactive();
     // }, 5000);
+    // this.checkLogin();
   },
 };
 </script>
