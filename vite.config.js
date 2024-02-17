@@ -9,9 +9,12 @@ export default ({ command }) => {
   const base = command === 'build' ? '/' : '/';
 
   return defineConfig({
-    plugins: [vue(), eslintPlugin({
-      include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue'],
-    })],
+    plugins: [
+      vue(),
+      eslintPlugin({
+        include: ['src/**/*.js', 'src/**/*.vue', 'src/*.js', 'src/*.vue'],
+      }),
+    ],
     resolve: {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
@@ -19,6 +22,7 @@ export default ({ command }) => {
     },
     server: {
       host: '0.0.0.0',
+      port: 5174,
     },
     base,
   });
