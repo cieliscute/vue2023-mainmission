@@ -1,9 +1,6 @@
 <template>
-  <Loading
-    v-model:active="fullScreenLoading"
-    :can-cancel="false"
-    :is-full-page="true"
-  />
+  <Loading :active="fullScreenLoading"
+          :can-cancel="false"/>
 </template>
 <script>
 import Loading from 'vue-loading-overlay';
@@ -12,18 +9,18 @@ import statusStore from '@/stores/statusStore';
 import { mapState } from 'pinia';
 
 export default {
-  components: {
-    Loading,
-  },
-  data() {
-    return {
-    };
-  },
-  methods: {
+  props: {
 
   },
+  data() {
+    return {};
+  },
+  methods: {},
   computed: {
     ...mapState(statusStore, ['fullScreenLoading']),
+  },
+  components: {
+    Loading,
   },
 };
 </script>
