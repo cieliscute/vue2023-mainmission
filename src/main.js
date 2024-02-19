@@ -1,6 +1,7 @@
 // import './assets/main.css'
 import './assets/all.scss';
 import 'bootstrap/dist/js/bootstrap';
+import 'vue-loading-overlay/dist/css/index.css';
 
 import axios from 'axios';
 import VueAxios from 'vue-axios';

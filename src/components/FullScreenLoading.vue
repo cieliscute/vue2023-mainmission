@@ -9,11 +9,10 @@ import statusStore from '@/stores/statusStore';
 import { mapState } from 'pinia';
 
 export default {
-  props: {
-
-  },
   data() {
-    return {};
+    return {
+      loadingStatus: false,
+    };
   },
   methods: {},
   computed: {
@@ -21,6 +20,8 @@ export default {
   },
   components: {
     Loading,
+  },
+  watch: {
   },
 };
 </script>

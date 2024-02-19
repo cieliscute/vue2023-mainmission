@@ -10,7 +10,9 @@ import Toast from '@/components/ToastInstance.vue';
 import statusStore from '@/stores/statusStore';
 
 export default {
-  components: { Toast },
+  components: {
+    Toast,
+  },
   setup() {
     const status = statusStore();
     const { messages } = storeToRefs(status);

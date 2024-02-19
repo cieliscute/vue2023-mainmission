@@ -1,11 +1,14 @@
 <template>
-  <div
-    class="loading vw-100 vh-100 d-flex justify-content-center align-items-center"
-    v-if="loading"
-  >
+  <!-- <div
+  class="loading vw-100 vh-100 d-flex justify-content-center align-items-center" v-if="loading">
     <div class="loader"></div>
-  </div>
-  <div class="container" v-else>
+  </div> -->
+  <FullScreenLoading v-model:active="fullScreenLoadingStatus"
+      :can-cancel="false"
+      color="#FAA"
+      loader="dots"
+      :is-full-page="true"/>
+  <div class="container-fluid">
     <div class="row py-3">
       <div class="col-md-6">
         <h2>產品列表</h2>
@@ -71,17 +74,19 @@
             <img :src="item" alt="" class="img-fluid mb-2" />
           </template>
         </template>
-        <p class="text-secondary">請選擇一個商品查看</p>
+        <p class="text-secondary">請選擇一個商品查看{{ fullScreenLoadingStatus }}</p>
       </div>
     </div>
   </div>
 </template>
 <script>
 import Swal from 'sweetalert2';
+import FullScreenLoading from 'vue-loading-overlay';
 
 export default {
   data() {
     return {
+      fullScreenLoadingStatus: false,
       products: '',
       temp: '',
       loading: true,
@@ -126,8 +131,12 @@ export default {
         });
     },
   },
+  components: {
+    FullScreenLoading,
+  },
   mounted() {
-    this.checktoken();
+    // this.checktoken();
+    this.fullScreenLoadingStatus = false;
   },
 };
 </script>

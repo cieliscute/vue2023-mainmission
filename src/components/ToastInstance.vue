@@ -1,12 +1,11 @@
 <template>
-  <div class="toast" role="alert"
-  aria-live="assertive" aria-atomic="true" ref="toast">
+  <div class="toast" role="alert" ref="toast" aria-live="assertive" aria-atomic="true">
     <div class="toast-header">
-      <span :class="`bg-${msg.style}`" class="p-2 rounded me-2 d-inline-block"></span>
+      <span class="rounded me-2 p-2" :class="`bg-${msg.style}`"></span>
       <strong class="me-auto">{{ msg.title }}</strong>
       <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
     </div>
-    <div class="toast-body " v-if="msg.content">
+    <div class="toast-body">
       {{ msg.content }}
     </div>
   </div>
@@ -15,7 +14,6 @@
 import Toast from 'bootstrap/js/dist/toast';
 
 export default {
-  // name: 'Toast',
   props: [
     'msg',
   ],
@@ -23,6 +21,7 @@ export default {
     const toastEl = this.$refs.toast;
     const toast = new Toast(toastEl, {
       delay: 3000,
+      autohide: true,
     });
     toast.show();
   },

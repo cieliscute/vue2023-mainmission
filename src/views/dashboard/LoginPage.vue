@@ -1,7 +1,7 @@
 <template>
-  <FullScreenLoading></FullScreenLoading>
-  <ToastContainer></ToastContainer>
+  <!-- <FullScreenLoading></FullScreenLoading> -->
   <!-- 在滿版圖片上方多包一層，因為blur在某些瀏覽器會有一些白邊，透過scale配合overflow-hidden來解決-->
+  <ToastContainer></ToastContainer>
   <div class="overflow-hidden dvh-100 top-0 start-0 end-0 bottom-0 z-n1 position-fixed">
     <img
       src="https://images.unsplash.com/photo-1585978075589-fc6561e20296?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -51,14 +51,15 @@
   </div>
 </template>
 <script>
-import Swal from 'sweetalert2';
 
 import { mapActions } from 'pinia';
 import statusStore from '@/stores/statusStore';
+// import FullScreenLoading from '@/components/FullScreenLoading.vue';
+import Swal from 'sweetalert2';
+import MixinComponent from '@/components/MixinComponent.vue';
 import ToastContainer from '@/components/ToastContainer.vue';
-import FullScreenLoading from '@/components/FullScreenLoading.vue';
 
-import { setCookie } from '../methods/myFunction';
+import { setCookie } from '@/methods/myFunction';
 
 export default {
   data() {
@@ -71,11 +72,11 @@ export default {
     };
   },
   components: {
-    FullScreenLoading,
+    // FullScreenLoading,
     ToastContainer,
   },
   methods: {
-    ...mapActions(statusStore, ['pushMessage', 'fullScreenLoadingActive', 'fullScreenLoadingDeactive']),
+    ...mapActions(statusStore, ['pushMessage', 'cleanMessage']),
     onSubmit() {
       this.fullScreenLoadingActive();
       const path = `${import.meta.env.VITE_APIURL}/admin/signin`;
@@ -103,17 +104,24 @@ export default {
             icon: 'error',
             confirmButtonText: 'OK',
           });
+
+          // this.addToast({
+          //   content: 'test',
+          // });
         });
+    },
+    test() {
+      this.addToast({
+        content: 'test',
+      });
+    },
+    test2() {
+      this.pushMessage({ content: 'toast content', style: 'danger' });
     },
   },
   mounted() {
-    // this.pushMessage({ title: '更新購物車資訊', content: '測試' });
-    // this.fullScreenLoadingActive();
-    // setTimeout(() => {
-    //   this.fullScreenLoadingDeactive();
-    // }, 5000);
-    // this.checkLogin();
   },
+  mixins: [MixinComponent],
 };
 </script>
 <style scoped lang="scss">
