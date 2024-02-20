@@ -13,16 +13,6 @@ const router = createRouter({
       path: '/adminlogin',
       component: () => import('@/views/dashboard/LoginPage.vue'),
     },
-    {
-      path: '/dashboard',
-      component: () => import('@/views/dashboard/DashboardView.vue'),
-      children: [
-        {
-          path: 'manageproduct',
-          component: () => import('@/views/dashboard/ManageProducts.vue'),
-        },
-      ],
-    },
     // {
     //   path: '/',
     //   redirect: {
@@ -34,8 +24,8 @@ const router = createRouter({
       component: () => import('@/views/dashboard/DashboardView.vue'),
       children: [
         {
-          path: 'products',
-          component: () => import('../views/dashboard/AdminProducts.vue'),
+          path: 'manageproducts',
+          component: () => import('../views/dashboard/ManageProducts2.vue'),
         },
       ],
     },

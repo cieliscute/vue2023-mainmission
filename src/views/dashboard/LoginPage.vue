@@ -1,7 +1,8 @@
 <template>
-  <!-- <FullScreenLoading></FullScreenLoading> -->
+  <FullScreenLoading v-model:active="fullScreenLoadingStatus"
+      :can-cancel="false"
+      :is-full-page="true"/>
   <!-- 在滿版圖片上方多包一層，因為blur在某些瀏覽器會有一些白邊，透過scale配合overflow-hidden來解決-->
-  <ToastContainer></ToastContainer>
   <div class="overflow-hidden dvh-100 top-0 start-0 end-0 bottom-0 z-n1 position-fixed">
     <img
       src="https://images.unsplash.com/photo-1585978075589-fc6561e20296?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
@@ -52,76 +53,56 @@
 </template>
 <script>
 
-import { mapActions } from 'pinia';
-import statusStore from '@/stores/statusStore';
-// import FullScreenLoading from '@/components/FullScreenLoading.vue';
 import Swal from 'sweetalert2';
-import MixinComponent from '@/components/MixinComponent.vue';
-import ToastContainer from '@/components/ToastContainer.vue';
+import { mapActions } from 'pinia';
+
+import statusStore from '@/stores/statusStore';
+// import MixinComponent from '@/components/MixinComponent.vue';
 
 import { setCookie } from '@/methods/myFunction';
 
 export default {
   data() {
     return {
-      isLoading: false,
+      fullScreenLoadingStatus: false,
       user: {
         username: '',
         password: '',
       },
     };
   },
-  components: {
-    // FullScreenLoading,
-    ToastContainer,
-  },
   methods: {
     ...mapActions(statusStore, ['pushMessage', 'cleanMessage']),
     onSubmit() {
-      this.fullScreenLoadingActive();
+      this.fullScreenLoadingStatus = true;
       const path = `${import.meta.env.VITE_APIURL}/admin/signin`;
       this.$http
         .post(path, this.user)
         .then((response) => {
           // 取得資料代表驗證完成，移除loading動畫
-          // this.isLoading = false;
-          this.fullScreenLoadingDeactive();
+          this.fullScreenLoadingStatus = false;
           const { token, expired } = response.data;
           setCookie(token, expired);
-          // document.cookie = `hexToken=${token};expires=${new Date(expired)};`;
           // this.$http.defaults.headers.common.Authorization = `${token}`;
-          this.$router.push('/dashboard/products');
+          this.$router.push('/dashboard/manageproducts');
         })
         .catch((error) => {
-          // console.log(error.response.data.message);
           // 驗證錯誤，移除loading動畫
-          // this.isLoading = false;
-          this.fullScreenLoadingDeactive();
+          this.fullScreenLoadingStatus = false;
           // 彈出錯誤資訊回饋給使用者
           Swal.fire({
             title: `${error.response.data.message}`,
             text: '請確認資料皆有正確輸入',
             icon: 'error',
+            allowEnterKey: false,
             confirmButtonText: 'OK',
           });
-
-          // this.addToast({
-          //   content: 'test',
-          // });
         });
-    },
-    test() {
-      this.addToast({
-        content: 'test',
-      });
-    },
-    test2() {
-      this.pushMessage({ content: 'toast content', style: 'danger' });
     },
   },
   mounted() {
   },
-  mixins: [MixinComponent],
+  // mixins: [MixinComponent],
 };
 </script>
 <style scoped lang="scss">
@@ -142,7 +123,9 @@ export default {
   box-shadow: none;
 }
 
-// chrome瀏覽器有autofill,會改變底色... 太雷了吧！感謝stackoverflow(https://stackoverflow.com/questions/29580704/change-input-background-to-transparent-on-autocomplete-form)
+// chrome瀏覽器有autofill,會改變底色... 太雷了吧！
+//感謝stackoverflow(https://stackoverflow.com/questions/29580704/change-input-background-to-transparent-on-autocomplete-form)
+
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {

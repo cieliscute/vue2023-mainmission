@@ -53,3 +53,19 @@
 
 // css loading
 @import './cssloader.css';
+
+@import '@sweetalert2/theme-material-ui/material-ui.scss';
+
+.dvh-100{
+  height: 100dvh;
+}
+
+
+// 如果需要將sweet alert顯示在full screen loading之上的話，啟用下方樣式
+//參考資料：https://stackoverflow.com/questions/45062875/how-to-use-sweetalert2-inside-modal
+// loading的z-index預設是9999
+// https://www.npmjs.com/package/vue-loading-overlay
+
+// .swal2-container {
+//   z-index:9998
+// }
