@@ -54,9 +54,9 @@
 <script>
 
 import Swal from 'sweetalert2';
-import { mapActions } from 'pinia';
+// import { mapActions } from 'pinia';
 
-import statusStore from '@/stores/statusStore';
+// import statusStore from '@/stores/statusStore';
 // import MixinComponent from '@/components/MixinComponent.vue';
 
 import { setCookie } from '@/methods/myFunction';
@@ -72,7 +72,7 @@ export default {
     };
   },
   methods: {
-    ...mapActions(statusStore, ['pushMessage', 'cleanMessage']),
+    // ...mapActions(statusStore, ['pushMessage', 'cleanMessage']),
     onSubmit() {
       this.fullScreenLoadingStatus = true;
       const path = `${import.meta.env.VITE_APIURL}/admin/signin`;

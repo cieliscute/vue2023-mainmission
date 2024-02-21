@@ -36,7 +36,7 @@ export default {
   methods: {
   },
   mounted() {
-    const El = this.$refs.productModal;
+    const El = this.$refs.delProductModal;
     this.bsModal = new this.$bs.Modal(El);
   },
 };

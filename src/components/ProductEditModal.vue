@@ -8,7 +8,7 @@
       <div class="modal-content border-0">
         <div class="modal-header bg-dark text-white">
           <h5 id="productModalLabel" class="modal-title">
-            <span>新增產品</span>
+            <span>{{tempData.modalTitle}}產品</span>
           </h5>
           <button type="button" class="btn-close"
           data-bs-dismiss="modal" aria-label="Close"></button>
@@ -19,7 +19,8 @@
               <div class="mb-2">
                 <div class="mb-3">
                   <label for="imageUrl" class="form-label">輸入圖片網址</label>
-                  <input type="text" class="form-control" placeholder="請輸入圖片連結">
+                  <input type="text" class="form-control"
+                  placeholder="請輸入圖片連結" v-model="productData.imageUrl">
                 </div>
                 <img class="img-fluid" src="" alt="">
               </div>
@@ -38,17 +39,21 @@
             <div class="col-sm-8">
               <div class="mb-3">
                 <label for="title" class="form-label">標題</label>
-                <input id="title" type="text" class="form-control" placeholder="請輸入標題">
+                <input id="title" type="text" class="form-control" placeholder="請輸入標題"
+                v-model="productData.title">
               </div>
 
               <div class="row">
                 <div class="mb-3 col-md-6">
                   <label for="category" class="form-label">分類</label>
-                  <input id="category" type="text" class="form-control" placeholder="請輸入分類">
+                  <input id="category" type="text"
+                  class="form-control" placeholder="請輸入分類"
+                  v-model="productData.category">
                 </div>
                 <div class="mb-3 col-md-6">
                   <label for="price" class="form-label">單位</label>
-                  <input id="unit" type="text" class="form-control" placeholder="請輸入單位">
+                  <input id="unit" type="text" class="form-control" placeholder="請輸入單位"
+                  v-model="productData.unit">
                 </div>
               </div>
 
@@ -56,24 +61,28 @@
                 <div class="mb-3 col-md-6">
                   <label for="origin_price" class="form-label">原價</label>
                   <input id="origin_price" type="number"
-                  min="0" class="form-control" placeholder="請輸入原價">
+                  min="0" class="form-control" placeholder="請輸入原價"
+                  v-model="productData.origin_price">
                 </div>
                 <div class="mb-3 col-md-6">
                   <label for="price" class="form-label">售價</label>
-                  <input id="price" type="number" min="0" class="form-control" placeholder="請輸入售價">
+                  <input id="price" type="number" min="0" class="form-control" placeholder="請輸入售價"
+                  v-model="productData.price">
                 </div>
               </div>
               <hr>
 
               <div class="mb-3">
                 <label for="description" class="form-label">產品描述</label>
-                <textarea id="description" type="text" class="form-control" placeholder="請輸入產品描述">
-                    </textarea>
+                <textarea id="description" type="text" class="form-control" placeholder="請輸入產品描述"
+                v-model="productData.description">
+                </textarea>
               </div>
               <div class="mb-3">
                 <label for="content" class="form-label">說明內容</label>
-                <textarea id="description" type="text" class="form-control" placeholder="請輸入說明內容">
-                    </textarea>
+                <textarea id="content" type="text" class="form-control" placeholder="請輸入說明內容"
+                v-model="productData.content">
+                </textarea>
               </div>
               <div class="mb-3">
                 <div class="form-check">
@@ -89,7 +98,7 @@
           <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
             取消
           </button>
-          <button type="button" class="btn btn-primary">
+          <button type="button" class="btn btn-primary" @click="onSubmit">
             確認
           </button>
         </div>
@@ -99,13 +108,37 @@
 </template>
 <script>
 export default {
+  props: ['tempData', 'confirmFn'],
   data() {
     return {
       bsModal: '',
+      productData: {
+        title: '',
+        category: '',
+        unit: '',
+        origin_price: '',
+        price: '',
+        description: '',
+        content: '',
+      },
     };
   },
   methods: {
-
+    showModal() {
+      this.bsModal.show();
+    },
+    closeModal() {
+      this.bsModal.hide();
+    },
+    onSubmit() {
+      console.log('onSubmi');
+      this.confirmFn(this.productData);
+    },
+  },
+  watch: {
+    tempData(n) {
+      this.productData = { ...n.productData };
+    },
   },
   mounted() {
     const El = this.$refs.productModal;
@@ -113,4 +146,5 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+</style>

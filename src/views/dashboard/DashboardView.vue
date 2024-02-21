@@ -34,18 +34,18 @@ export default {
   data() {
     return {
       tokenChecked: false,
-      fullScreenLoadingStatus: false,
+      fullScreenLoadingStatus: true,
     };
   },
   components: {
   },
   methods: {
     checkToken() {
+      this.fullScreenLoadingStatus = true;
       // 檢查token前先將預設的axios header給清除
       delete this.$http.defaults.headers.common.Authorization;
       const token = takeoutToken();
       const checkTokenPath = `${import.meta.env.VITE_APIURL}/api/user/check`;
-      this.fullScreenLoadingStatus = true;
       this.$http.post(checkTokenPath, null, {
         headers: { Authorization: token },
       })
@@ -56,6 +56,7 @@ export default {
           this.tokenChecked = true;
           this.fullScreenLoadingStatus = false;
           this.addToast({ content: '登入驗證：成功' });
+          this.$router.push('/dashboard/manageproducts');
         })
         .catch(() => {
           this.fullScreenLoadingStatus = false;
@@ -83,6 +84,7 @@ export default {
   mounted() {
     this.checkToken();
     // this.tokenChecked = true;
+    // this.fullScreenLoadingStatus = false;
   },
   mixins: [MixinComponent],
 };

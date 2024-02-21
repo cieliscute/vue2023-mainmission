@@ -13,19 +13,13 @@ const router = createRouter({
       path: '/adminlogin',
       component: () => import('@/views/dashboard/LoginPage.vue'),
     },
-    // {
-    //   path: '/',
-    //   redirect: {
-    //     name: 'login',
-    //   },
-    // },
     {
       path: '/dashboard',
       component: () => import('@/views/dashboard/DashboardView.vue'),
       children: [
         {
           path: 'manageproducts',
-          component: () => import('../views/dashboard/ManageProducts2.vue'),
+          component: () => import('../views/dashboard/ManageProducts.vue'),
         },
       ],
     },
