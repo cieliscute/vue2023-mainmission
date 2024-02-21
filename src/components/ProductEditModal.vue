@@ -131,8 +131,8 @@ export default {
       this.bsModal.hide();
     },
     onSubmit() {
-      console.log('onSubmi');
-      this.confirmFn(this.productData);
+      console.log('onSubmit');
+      this.confirmFn({ data: this.productData });
     },
   },
   watch: {
