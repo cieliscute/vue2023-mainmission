@@ -21,6 +21,10 @@ const router = createRouter({
           path: 'manageproducts',
           component: () => import('../views/dashboard/ManageProducts.vue'),
         },
+        {
+          path: 'manageorders',
+          component: () => import('../views/dashboard/ManageOrders.vue'),
+        },
       ],
     },
     // {
