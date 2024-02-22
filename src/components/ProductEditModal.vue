@@ -145,7 +145,7 @@ export default {
       this.bsModal.hide();
     },
     onSubmit() {
-      this.confirmFn({ data: this.productData });
+      // this.confirmFn({ data: this.productData });
     },
   },
   watch: {
