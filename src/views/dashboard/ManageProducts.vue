@@ -218,7 +218,4 @@ export default {
 };
 </script>
 <style>
-*{
-  outline: 1px solid red;
-}
 </style>
