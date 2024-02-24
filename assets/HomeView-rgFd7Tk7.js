@@ -1,1 +1,0 @@
-import{_ as o}from"./_plugin-vue_export-helper-x3n3nnut.js";import{c as t,a as n,w as a,b as r,r as c,o as s,d as _}from"./index-M2q9tyOe.js";const i={},l=r("h1",null,"前台首頁",-1);function m(d,f){const e=c("RouterLink");return s(),t("main",null,[l,n(e,{to:"/adminlogin"},{default:a(()=>[_(" 前往後台登入頁面 ")]),_:1})])}const x=o(i,[["render",m]]);export{x as default};

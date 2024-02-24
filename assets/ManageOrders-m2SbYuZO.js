@@ -1,1 +1,0 @@
-import{_ as e}from"./_plugin-vue_export-helper-x3n3nnut.js";import{c as r,o as t}from"./index-M2q9tyOe.js";const o={data(){return{}},methods:{}};function a(n,s,c,p,_,d){return t(),r("h5",null,"訂單管理頁面")}const l=e(o,[["render",a]]);export{l as default};
