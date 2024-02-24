@@ -7,7 +7,18 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: () => import('@/views/HomeView.vue'),
+      component: () => import('@/views/front/HomeView.vue'),
+      children: [
+        {
+          path: 'home',
+          component: () => import('@/views/front/HomePage.vue'),
+        },
+        {
+          path: 'orders',
+          component: () => import('@/views/front/OrderPage.vue'),
+        },
+
+      ],
     },
     {
       path: '/adminlogin',
