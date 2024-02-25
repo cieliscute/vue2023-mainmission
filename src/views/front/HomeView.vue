@@ -17,6 +17,10 @@
             <RouterLink class="nav-link" aria-current="page"
             to="/orders">購買頁面</RouterLink>
           </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" aria-current="page"
+            to="/adminlogin">前往後台頁</RouterLink>
+          </li>
         </ul>
         <!-- <button class="btn btn-outline-success me-0 me-sm-2"
         type="button">登出</button> -->

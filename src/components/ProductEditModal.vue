@@ -3,7 +3,7 @@
   tabindex="-1" data-bs-backdrop="static"
   data-bs-keyboard="false" aria-labelledby="productModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-xl">
-      <VForm @submit="onSubmit" @keyup.enter="onSubmit" v-slot="{ errors }">
+      <VForm @submit="onSubmit"  v-slot="{ errors }">
         <div class="modal-content border-0">
           <div class="modal-header bg-dark text-white">
             <h5 id="productModalLabel" class="modal-title">
@@ -13,6 +13,7 @@
             data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
+            {{ errors }}
             <div class="row">
               <div class="col-12 col-lg-4 mb-5 mb-lg-0">
                 <div class="mb-2">
@@ -105,7 +106,7 @@
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
               取消
             </button>
-            <button type="submit" class="btn btn-primary" @click="onSubmit">
+            <button type="submit" class="btn btn-primary">
               確認
             </button>
           </div>
@@ -115,6 +116,8 @@
   </div>
 </template>
 <script>
+// import Swal from 'sweetalert2';
+
 export default {
   props: ['tempData', 'confirmFn'],
   data() {
@@ -132,8 +135,7 @@ export default {
       this.bsModal.hide();
     },
     onSubmit() {
-      console.log('onSubmit fire');
-      // this.confirmFn({ data: this.productData });
+      this.confirmFn({ data: this.productData });
     },
   },
   watch: {

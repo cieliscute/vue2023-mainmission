@@ -20,6 +20,10 @@
               <RouterLink class="nav-link" aria-current="page"
               to="/dashboard/manageorders">訂單管理</RouterLink>
             </li>
+            <li class="nav-item">
+              <RouterLink class="nav-link" aria-current="page"
+              to="/home">返回前台頁面</RouterLink>
+            </li>
           </ul>
           <button class="btn btn-outline-success me-0 me-sm-2"
           type="button" @click="logout">登出</button>
