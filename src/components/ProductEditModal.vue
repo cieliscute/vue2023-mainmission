@@ -105,7 +105,7 @@
             <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
               取消
             </button>
-            <button type="button" class="btn btn-primary" @click="onSubmit">
+            <button type="submit" class="btn btn-primary" @click="onSubmit">
               確認
             </button>
           </div>
