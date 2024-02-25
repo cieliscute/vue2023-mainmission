@@ -1,0 +1,1 @@
+import{_ as e}from"./_plugin-vue_export-helper-x3n3nnut.js";import{c as r,o as t}from"./index-WTnILUuV.js";const o={data(){return{}},methods:{}};function a(c,n,s,p,_,d){return t(),r("p",null,"購買頁面")}const l=e(o,[["render",a]]);export{l as default};

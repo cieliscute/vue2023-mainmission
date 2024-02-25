@@ -1,1 +1,0 @@
-import{S as a}from"./myFunction-P3p7yGm4.js";const n={data(){return{SwalToastInstance:""}},methods:{addToast({style:t="success",content:s,timer:o=3e3}){this.SwalToastInstance.fire({icon:t,title:s,timer:o})}},mounted(){this.SwalToastInstance=a.mixin({toast:!0,position:"top-end",animation:!0,showConfirmButton:!1,timerProgressBar:!0,showCloseButton:!0})}};export{n as _};
